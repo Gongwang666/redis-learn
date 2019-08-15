@@ -19,10 +19,12 @@ public class RedisController {
     }
     @PostMapping("/setUser")
     public void setUser(@RequestBody(required = true) User user){
-        gameShop.setUser("Users:1",user);
+        Long id = gameShop.getAndIncrUserId();
+        user.setId(id);
+        gameShop.setUser("Users:"+id,user);
     }
-    @GetMapping("/getUser")
-    public User getUser(){
-        return Optional.ofNullable(gameShop.getUser("Users:1")).orElse(null);
+    @PostMapping("/getUser")
+    public User getUser(@RequestBody(required = true) String key){
+        return Optional.ofNullable(gameShop.getUser(key)).orElse(null);
     }
 }

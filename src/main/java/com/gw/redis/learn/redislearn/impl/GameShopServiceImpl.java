@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import java.util.Optional;
 @Service("gameShop")
 public class GameShopServiceImpl implements GameShopService {
+    private final static String KEY_USER_ID = "userId";
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
     @Resource(name = "redisTemplate")
@@ -36,5 +37,10 @@ public class GameShopServiceImpl implements GameShopService {
     @Override
     public User getUser(String key) {
         return (User) mapper.fromHash(hashOperations.entries(key));
+    }
+
+    @Override
+    public Long getAndIncrUserId() {
+        return stringRedisTemplate.opsForValue().increment(KEY_USER_ID);
     }
 }

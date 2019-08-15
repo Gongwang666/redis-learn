@@ -7,4 +7,5 @@ public interface GameShopService {
     String getValue(String key);
     void setUser(String key,User user);
     User getUser(String key);
+    Long getAndIncrUserId();
 }

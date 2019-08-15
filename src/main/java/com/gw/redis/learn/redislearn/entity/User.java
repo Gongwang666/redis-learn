@@ -9,7 +9,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class User implements Serializable{
     @EqualsAndHashCode.Include
-    private Integer id;
+    private Long id;
     private String name;
     private Double funds;
 }
